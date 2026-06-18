@@ -85,9 +85,6 @@ const app = {
       try {
         const parsed = JSON.parse(saved);
         this.userProfile = parsed;
-        if (!this.userProfile.geminiKey) {
-          this.userProfile.geminiKey = "YOUR_GEMINI_API_KEY_HERE";
-        }
         this.carbonData = parsed.carbonData || null;
       } catch (err) {
         console.error("Error parsing profile, resetting...", err);
@@ -112,7 +109,7 @@ const app = {
       inputs: null,
       awardedAchievements: [],
       simulationUsed: false,
-      geminiKey: "YOUR_GEMINI_API_KEY_HERE"
+      geminiKey: ""
     };
     this.carbonData = null;
     this.saveProfile();
@@ -336,16 +333,6 @@ const app = {
     }, 4000);
   }
 };
-
-// Add standard keyframe for slide out dynamic sequence
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideOutRight {
-    from { opacity: 1; transform: translateX(0); }
-    to { opacity: 0; transform: translateX(120%); }
-  }
-`;
-document.head.appendChild(style);
 
 // Window onload trigger
 window.addEventListener('DOMContentLoaded', () => {
