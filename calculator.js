@@ -1,3 +1,5 @@
+"use strict";
+
 // Carbon Footprint Calculator Module
 
 const calculator = {
@@ -78,6 +80,16 @@ const calculator = {
         }
       });
     });
+
+    const btnPrev = document.getElementById('btn-calc-prev');
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => this.prevStep());
+    }
+
+    const btnNext = document.getElementById('btn-calc-next');
+    if (btnNext) {
+      btnNext.addEventListener('click', () => this.nextStep());
+    }
   },
 
   // UI Navigation

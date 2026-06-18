@@ -1,3 +1,5 @@
+"use strict";
+
 // Dashboard Rendering Module
 
 const dashboard = {

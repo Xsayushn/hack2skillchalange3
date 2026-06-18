@@ -1,3 +1,5 @@
+"use strict";
+
 // Main Application Controller Module
 
 const app = {
@@ -11,9 +13,57 @@ const app = {
     calculator.init();
     simulator.init();
     assistant.init();
+    habits.init();
     
     // Trigger initial renders
     this.updateDashboard();
+    
+    // Programmatic event listeners for navigation & settings
+    const views = ['dashboard', 'calculator', 'simulator', 'habits', 'assistant', 'settings'];
+    views.forEach(v => {
+      const navItem = document.getElementById(`nav-${v}`);
+      if (navItem) {
+        const link = navItem.querySelector('a');
+        if (link) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.navigateTo(v);
+          });
+        }
+      }
+    });
+
+    const btnRecalculate = document.getElementById('btn-recalculate');
+    if (btnRecalculate) {
+      btnRecalculate.addEventListener('click', () => {
+        this.navigateTo('calculator');
+      });
+    }
+
+    const inputName = document.getElementById('setting-user-name');
+    if (inputName) {
+      inputName.addEventListener('change', () => this.saveSettings());
+    }
+
+    const selectRegion = document.getElementById('setting-region');
+    if (selectRegion) {
+      selectRegion.addEventListener('change', () => this.saveSettings());
+    }
+
+    const inputKey = document.getElementById('setting-gemini-key');
+    if (inputKey) {
+      inputKey.addEventListener('change', () => this.saveSettings());
+    }
+
+    const btnToggleKey = document.getElementById('btn-toggle-key-visibility');
+    if (btnToggleKey) {
+      btnToggleKey.addEventListener('click', () => this.toggleKeyVisibility());
+    }
+
+    const btnWipe = document.getElementById('btn-wipe-data');
+    if (btnWipe) {
+      btnWipe.addEventListener('click', () => this.resetAllData());
+    }
     
     // Listen for back/forward navigation or hash changes
     window.addEventListener('hashchange', () => {
@@ -35,6 +85,9 @@ const app = {
       try {
         const parsed = JSON.parse(saved);
         this.userProfile = parsed;
+        if (!this.userProfile.geminiKey) {
+          this.userProfile.geminiKey = "YOUR_GEMINI_API_KEY_HERE";
+        }
         this.carbonData = parsed.carbonData || null;
       } catch (err) {
         console.error("Error parsing profile, resetting...", err);
@@ -59,7 +112,7 @@ const app = {
       inputs: null,
       awardedAchievements: [],
       simulationUsed: false,
-      geminiKey: ""
+      geminiKey: "YOUR_GEMINI_API_KEY_HERE"
     };
     this.carbonData = null;
     this.saveProfile();
@@ -270,8 +323,9 @@ const app = {
 
     toast.innerHTML = `
       <i class="fa-solid ${iconClass}"></i>
-      <span>${message}</span>
+      <span></span>
     `;
+    toast.querySelector('span').textContent = message;
 
     container.appendChild(toast);
 
@@ -285,7 +339,7 @@ const app = {
 
 // Add standard keyframe for slide out dynamic sequence
 const style = document.createElement('style');
-style.innerHTML = `
+style.textContent = `
   @keyframes slideOutRight {
     from { opacity: 1; transform: translateX(0); }
     to { opacity: 0; transform: translateX(120%); }

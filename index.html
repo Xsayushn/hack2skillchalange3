@@ -30,44 +30,44 @@
     <nav class="sidebar" aria-label="Main Navigation">
       <div>
         <div class="logo-container">
-          <div class="logo-icon"><i class="fa-solid fa-leaf"></i></div>
+          <div class="logo-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
           <span class="logo-text">EcoFootprint</span>
         </div>
         
         <ul class="nav-menu">
           <li class="nav-item active" id="nav-dashboard">
-            <a href="#dashboard" onclick="app.navigateTo('dashboard'); return false;">
-              <i class="fa-solid fa-chart-pie"></i>
+            <a href="#dashboard">
+              <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li class="nav-item" id="nav-calculator">
-            <a href="#calculator" onclick="app.navigateTo('calculator'); return false;">
-              <i class="fa-solid fa-calculator"></i>
+            <a href="#calculator">
+              <i class="fa-solid fa-calculator" aria-hidden="true"></i>
               <span>Calculator</span>
             </a>
           </li>
           <li class="nav-item" id="nav-simulator">
-            <a href="#simulator" onclick="app.navigateTo('simulator'); return false;">
-              <i class="fa-solid fa-sliders"></i>
+            <a href="#simulator">
+              <i class="fa-solid fa-sliders" aria-hidden="true"></i>
               <span>Simulator</span>
             </a>
           </li>
           <li class="nav-item" id="nav-habits">
-            <a href="#habits" onclick="app.navigateTo('habits'); return false;">
-              <i class="fa-solid fa-square-check"></i>
+            <a href="#habits">
+              <i class="fa-solid fa-square-check" aria-hidden="true"></i>
               <span>Eco-Habits</span>
             </a>
           </li>
           <li class="nav-item" id="nav-assistant">
-            <a href="#assistant" onclick="app.navigateTo('assistant'); return false;">
-              <i class="fa-solid fa-robot"></i>
+            <a href="#assistant">
+              <i class="fa-solid fa-robot" aria-hidden="true"></i>
               <span>Eco-Assistant</span>
             </a>
           </li>
           <li class="nav-item" id="nav-settings">
-            <a href="#settings" onclick="app.navigateTo('settings'); return false;">
-              <i class="fa-solid fa-gear"></i>
+            <a href="#settings">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
               <span>Settings</span>
             </a>
           </li>
@@ -94,8 +94,8 @@
             <p>Track your ecological standing and environmental milestones</p>
           </div>
           <div class="header-actions">
-            <button class="btn btn-primary" id="btn-recalculate" onclick="app.navigateTo('calculator')">
-              <i class="fa-solid fa-rotate"></i> Update Data
+            <button class="btn btn-primary" id="btn-recalculate">
+              <i class="fa-solid fa-rotate" aria-hidden="true"></i> Update Data
             </button>
           </div>
         </div>
@@ -124,14 +124,14 @@
             <div class="metric-header">
               <span>Annual Footprint</span>
               <div class="metric-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--color-primary);">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
               </div>
             </div>
             <div class="metric-val-container">
               <span class="metric-value" id="val-annual-footprint">0.0</span>
               <span class="metric-unit">tons CO₂e</span>
               <div class="metric-change" id="change-annual-footprint">
-                <i class="fa-solid fa-minus"></i> <span>No previous data</span>
+                <i class="fa-solid fa-minus" aria-hidden="true"></i> <span>No previous data</span>
               </div>
             </div>
           </div>
@@ -140,14 +140,14 @@
             <div class="metric-header">
               <span>Monthly Carbon</span>
               <div class="metric-icon" style="background: rgba(6, 182, 212, 0.15); color: var(--color-secondary);">
-                <i class="fa-solid fa-calendar-day"></i>
+                <i class="fa-solid fa-calendar-day" aria-hidden="true"></i>
               </div>
             </div>
             <div class="metric-val-container">
               <span class="metric-value" id="val-monthly-footprint">0.0</span>
               <span class="metric-unit">kg CO₂e</span>
               <div class="metric-change" id="change-monthly-footprint">
-                <i class="fa-solid fa-minus"></i> <span>No previous data</span>
+                <i class="fa-solid fa-minus" aria-hidden="true"></i> <span>No previous data</span>
               </div>
             </div>
           </div>
@@ -156,14 +156,14 @@
             <div class="metric-header">
               <span>vs Regional Target</span>
               <div class="metric-icon" style="background: rgba(139, 92, 246, 0.15); color: var(--color-accent);">
-                <i class="fa-solid fa-bullseye"></i>
+                <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
               </div>
             </div>
             <div class="metric-val-container">
               <span class="metric-value" id="val-target-diff">0%</span>
               <span class="metric-unit" id="unit-target-comparison">of limit</span>
               <div class="metric-change" id="change-target-standing">
-                <i class="fa-solid fa-leaf"></i> <span>Tracking targets</span>
+                <i class="fa-solid fa-leaf" aria-hidden="true"></i> <span>Tracking targets</span>
               </div>
             </div>
           </div>
@@ -172,14 +172,14 @@
             <div class="metric-header">
               <span>Eco Standing Score</span>
               <div class="metric-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--color-warning);">
-                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star" aria-hidden="true"></i>
               </div>
             </div>
             <div class="metric-val-container">
               <span class="metric-value" id="val-eco-score">--</span>
               <span class="metric-unit">/100</span>
               <div class="metric-change" id="change-eco-rank">
-                <i class="fa-solid fa-ranking-star"></i> <span id="val-eco-rating">Enter data</span>
+                <i class="fa-solid fa-ranking-star" aria-hidden="true"></i> <span id="val-eco-rating">Enter data</span>
               </div>
             </div>
           </div>
@@ -190,7 +190,7 @@
           <!-- Footprint Breakdown -->
           <div class="card chart-card" id="card-dashboard-breakdown">
             <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fa-solid fa-chart-pie" style="color: var(--color-primary);"></i> Carbon Footprint Breakdown
+              <i class="fa-solid fa-chart-pie" style="color: var(--color-primary);" aria-hidden="true"></i> Carbon Footprint Breakdown
             </h2>
             <div class="chart-container">
               <canvas id="chart-breakdown"></canvas>
@@ -200,7 +200,7 @@
           <!-- Achievements List -->
           <div class="card chart-card" id="card-dashboard-achievements">
             <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fa-solid fa-trophy" style="color: var(--color-warning);"></i> Milestones & Badges
+              <i class="fa-solid fa-trophy" style="color: var(--color-warning);" aria-hidden="true"></i> Milestones & Badges
             </h2>
             <div class="achievements-list" id="dashboard-achievements-container">
               <!-- Dynamically populated achievements -->
@@ -244,7 +244,7 @@
             
             <!-- Step 1: Energy -->
             <div class="calc-step-view active" id="calc-step-0">
-              <h2 class="calc-step-title"><i class="fa-solid fa-house-chimney" style="color: var(--color-warning); margin-right: 0.5rem;"></i> Household Energy</h2>
+              <h2 class="calc-step-title"><i class="fa-solid fa-house-chimney" style="color: var(--color-warning); margin-right: 0.5rem;" aria-hidden="true"></i> Household Energy</h2>
               
               <div class="form-group">
                 <label for="input-electricity">Electricity consumption (kWh / month)</label>
@@ -267,37 +267,37 @@
 
             <!-- Step 2: Transport -->
             <div class="calc-step-view" id="calc-step-1">
-              <h2 class="calc-step-title"><i class="fa-solid fa-car-side" style="color: var(--color-secondary); margin-right: 0.5rem;"></i> Transportation</h2>
+              <h2 class="calc-step-title"><i class="fa-solid fa-car-side" style="color: var(--color-secondary); margin-right: 0.5rem;" aria-hidden="true"></i> Transportation</h2>
               
-              <div class="form-group">
-                <label>Primary Vehicle Fuel Type</label>
+              <fieldset class="form-group radio-fieldset">
+                <legend class="radio-legend">Primary Vehicle Fuel Type</legend>
                 <div class="radio-group" id="radio-car-fuel">
                   <div class="radio-option">
                     <input type="radio" name="car-fuel" id="fuel-petrol" value="petrol" checked>
                     <label for="fuel-petrol" class="radio-label">
-                      <i class="fa-solid fa-gas-pump"></i> Petrol/Gas
+                      <i class="fa-solid fa-gas-pump" aria-hidden="true"></i> Petrol/Gas
                     </label>
                   </div>
                   <div class="radio-option">
                     <input type="radio" name="car-fuel" id="fuel-diesel" value="diesel">
                     <label for="fuel-diesel" class="radio-label">
-                      <i class="fa-solid fa-truck-monster"></i> Diesel
+                      <i class="fa-solid fa-truck-monster" aria-hidden="true"></i> Diesel
                     </label>
                   </div>
                   <div class="radio-option">
                     <input type="radio" name="car-fuel" id="fuel-ev" value="ev">
                     <label for="fuel-ev" class="radio-label">
-                      <i class="fa-solid fa-bolt"></i> EV
+                      <i class="fa-solid fa-bolt" aria-hidden="true"></i> EV
                     </label>
                   </div>
                   <div class="radio-option">
                     <input type="radio" name="car-fuel" id="fuel-none" value="none">
                     <label for="fuel-none" class="radio-label">
-                      <i class="fa-solid fa-xmark"></i> No Car
+                      <i class="fa-solid fa-xmark" aria-hidden="true"></i> No Car
                     </label>
                   </div>
                 </div>
-              </div>
+              </fieldset>
 
               <div class="form-group" id="group-car-dist">
                 <label for="input-car-distance">Car distance traveled (km / month)</label>
@@ -317,37 +317,37 @@
 
             <!-- Step 3: Diet & Food -->
             <div class="calc-step-view" id="calc-step-2">
-              <h2 class="calc-step-title"><i class="fa-solid fa-utensils" style="color: var(--color-primary); margin-right: 0.5rem;"></i> Diet & Food Consumption</h2>
+              <h2 class="calc-step-title"><i class="fa-solid fa-utensils" style="color: var(--color-primary); margin-right: 0.5rem;" aria-hidden="true"></i> Diet & Food Consumption</h2>
               
-              <div class="form-group">
-                <label>Dietary Habits</label>
+              <fieldset class="form-group radio-fieldset">
+                <legend class="radio-legend">Dietary Habits</legend>
                 <div class="radio-group" id="radio-diet-type">
                   <div class="radio-option">
                     <input type="radio" name="diet" id="diet-meat" value="meat-heavy" checked>
                     <label for="diet-meat" class="radio-label">
-                      <i class="fa-solid fa-drumstick-bite"></i> Meat Lover
+                      <i class="fa-solid fa-drumstick-bite" aria-hidden="true"></i> Meat Lover
                     </label>
                   </div>
                   <div class="radio-option">
                     <input type="radio" name="diet" id="diet-balanced" value="balanced">
                     <label for="diet-balanced" class="radio-label">
-                      <i class="fa-solid fa-burger"></i> Average/Mixed
+                      <i class="fa-solid fa-burger" aria-hidden="true"></i> Average/Mixed
                     </label>
                   </div>
                   <div class="radio-option">
                     <input type="radio" name="diet" id="diet-veg" value="vegetarian">
                     <label for="diet-veg" class="radio-label">
-                      <i class="fa-solid fa-egg"></i> Vegetarian
+                      <i class="fa-solid fa-egg" aria-hidden="true"></i> Vegetarian
                     </label>
                   </div>
                   <div class="radio-option">
                     <input type="radio" name="diet" id="diet-vegan" value="vegan">
                     <label for="diet-vegan" class="radio-label">
-                      <i class="fa-solid fa-seedling"></i> Vegan
+                      <i class="fa-solid fa-seedling" aria-hidden="true"></i> Vegan
                     </label>
                   </div>
                 </div>
-              </div>
+              </fieldset>
 
               <div class="form-group">
                 <label for="select-food-waste">Average weekly food waste level</label>
@@ -361,7 +361,7 @@
 
             <!-- Step 4: Waste & Lifestyle -->
             <div class="calc-step-view" id="calc-step-3">
-              <h2 class="calc-step-title"><i class="fa-solid fa-cart-shopping" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Waste & Consumption</h2>
+              <h2 class="calc-step-title"><i class="fa-solid fa-cart-shopping" style="color: var(--color-accent); margin-right: 0.5rem;" aria-hidden="true"></i> Waste & Consumption</h2>
               
               <div class="form-group">
                 <label for="input-waste">Garbage generated (number of large garbage bags / week)</label>
@@ -402,11 +402,11 @@
 
             <!-- Footer Buttons -->
             <div class="calc-footer">
-              <button class="btn btn-secondary" id="btn-calc-prev" disabled onclick="calculator.prevStep()">
-                <i class="fa-solid fa-arrow-left"></i> Previous
+              <button class="btn btn-secondary" id="btn-calc-prev" disabled>
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous
               </button>
-              <button class="btn btn-primary" id="btn-calc-next" onclick="calculator.nextStep()">
-                Next <i class="fa-solid fa-arrow-right"></i>
+              <button class="btn btn-primary" id="btn-calc-next">
+                Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </button>
             </div>
 
@@ -426,7 +426,7 @@
         <div class="simulator-layout">
           <!-- Adjustments Sliders -->
           <div class="card sim-controls-card" id="simulator-controls">
-            <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;"><i class="fa-solid fa-sliders" style="color: var(--color-primary); margin-right: 0.5rem;"></i> Simulation Sliders</h2>
+            <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;"><i class="fa-solid fa-sliders" style="color: var(--color-primary); margin-right: 0.5rem;" aria-hidden="true"></i> Simulation Sliders</h2>
             
             <div class="sim-slider-row slider-container">
               <div class="slider-header">
@@ -468,7 +468,7 @@
           <!-- Simulation Live Output -->
           <div class="card sim-card-right" id="simulator-output">
             <div>
-              <h2 style="font-size: 1.25rem; font-weight: 700;"><i class="fa-solid fa-square-poll-vertical" style="color: var(--color-secondary); margin-right: 0.5rem;"></i> Carbon Impact Projector</h2>
+              <h2 style="font-size: 1.25rem; font-weight: 700;"><i class="fa-solid fa-square-poll-vertical" style="color: var(--color-secondary); margin-right: 0.5rem;" aria-hidden="true"></i> Carbon Impact Projector</h2>
               <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">Live projection of potential offsets</p>
             </div>
 
@@ -494,8 +494,8 @@
               </div>
             </div>
 
-            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" id="btn-convert-sim-to-habits" onclick="simulator.applySimulatedActions()">
-              <i class="fa-solid fa-clipboard-list"></i> Adopt as Eco-Habits (+30 XP)
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" id="btn-convert-sim-to-habits">
+              <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Adopt as Eco-Habits (+30 XP)
             </button>
           </div>
         </div>
@@ -510,7 +510,7 @@
           </div>
           <div class="header-actions">
             <div style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary);">
-              <i class="fa-solid fa-bolt"></i> Active Habit Streaks
+              <i class="fa-solid fa-bolt" aria-hidden="true"></i> Active Habit Streaks
             </div>
           </div>
         </div>
@@ -534,7 +534,7 @@
           <!-- Coach Info & Key Setup -->
           <div class="assistant-info-panel">
             <div class="card" id="card-assistant-profile">
-              <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;"><i class="fa-solid fa-seedling" style="color: var(--color-primary); margin-right: 0.5rem;"></i> Gaia AI</h2>
+              <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;"><i class="fa-solid fa-seedling" style="color: var(--color-primary); margin-right: 0.5rem;" aria-hidden="true"></i> Gaia AI</h2>
               <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 1rem;">
                 Gaia tracks your profile inputs (transport, energy, and consumption) to make customized recommendations. 
               </p>
@@ -550,16 +550,16 @@
 
             <!-- Quick Action Prompts -->
             <div class="card" id="card-assistant-suggestions">
-              <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;"><i class="fa-regular fa-lightbulb" style="color: var(--color-warning); margin-right: 0.5rem;"></i> Quick Queries</h2>
+              <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;"><i class="fa-regular fa-lightbulb" style="color: var(--color-warning); margin-right: 0.5rem;" aria-hidden="true"></i> Quick Queries</h2>
               <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <button class="btn btn-secondary" style="font-size: 0.85rem; justify-content: flex-start; text-align: left;" onclick="assistant.sendQuickQuery('Analyze my footprint and give high-priority cuts')">
-                  <i class="fa-solid fa-chart-line" style="color: var(--color-secondary);"></i> Analyze my footprint
+                <button class="btn btn-secondary btn-quick-query" data-query="Analyze my footprint and give high-priority cuts" style="font-size: 0.85rem; justify-content: flex-start; text-align: left;">
+                  <i class="fa-solid fa-chart-line" style="color: var(--color-secondary);" aria-hidden="true"></i> Analyze my footprint
                 </button>
-                <button class="btn btn-secondary" style="font-size: 0.85rem; justify-content: flex-start; text-align: left;" onclick="assistant.sendQuickQuery('What is the easiest way to cut energy footprint?')">
-                  <i class="fa-solid fa-plug" style="color: var(--color-warning);"></i> Ease energy footprint
+                <button class="btn btn-secondary btn-quick-query" data-query="What is the easiest way to cut energy footprint?" style="font-size: 0.85rem; justify-content: flex-start; text-align: left;">
+                  <i class="fa-solid fa-plug" style="color: var(--color-warning);" aria-hidden="true"></i> Ease energy footprint
                 </button>
-                <button class="btn btn-secondary" style="font-size: 0.85rem; justify-content: flex-start; text-align: left;" onclick="assistant.sendQuickQuery('Give me a 3-step plant-based meal strategy')">
-                  <i class="fa-solid fa-leaf" style="color: var(--color-primary);"></i> Diet shift strategy
+                <button class="btn btn-secondary btn-quick-query" data-query="Give me a 3-step plant-based meal strategy" style="font-size: 0.85rem; justify-content: flex-start; text-align: left;">
+                  <i class="fa-solid fa-leaf" style="color: var(--color-primary);" aria-hidden="true"></i> Diet shift strategy
                 </button>
               </div>
             </div>
@@ -580,9 +580,9 @@
             </div>
 
             <div class="chat-input-area">
-              <input type="text" class="chat-input" id="chat-user-input" placeholder="Ask Gaia anything about reducing carbon..." onkeypress="assistant.handleKeyPress(event)">
-              <button class="chat-send-btn" id="btn-chat-send" onclick="assistant.sendMessage()">
-                <i class="fa-solid fa-paper-plane"></i>
+              <input type="text" class="chat-input" id="chat-user-input" placeholder="Ask Gaia anything about reducing carbon...">
+              <button class="chat-send-btn" id="btn-chat-send" aria-label="Send Message">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -602,22 +602,22 @@
           <!-- Profile Settings -->
           <div class="settings-row">
             <div class="settings-desc">
-              <h4>User Name</h4>
+              <label for="setting-user-name">User Name</label>
               <p>Customize your profile identifier</p>
             </div>
             <div class="settings-control">
-              <input type="text" id="setting-user-name" value="Eco Explorer" onchange="app.saveSettings()">
+              <input type="text" id="setting-user-name" value="Eco Explorer">
             </div>
           </div>
 
           <!-- Region variables -->
           <div class="settings-row">
             <div class="settings-desc">
-              <h4>Grid Region & Target</h4>
+              <label for="setting-region">Grid Region & Target</label>
               <p>Specifies grid carbon intensity values (kg CO₂e/kWh) and annual maximum limits</p>
             </div>
             <div class="settings-control">
-              <select id="setting-region" onchange="app.saveSettings()">
+              <select id="setting-region">
                 <option value="US">United States (0.37 kg/kWh, Limit: 16.0t)</option>
                 <option value="EU" selected>European Union (0.25 kg/kWh, Limit: 8.0t)</option>
                 <option value="IN">India (0.75 kg/kWh, Limit: 2.2t)</option>
@@ -629,13 +629,13 @@
           <!-- Gemini integration -->
           <div class="settings-row">
             <div class="settings-desc">
-              <h4>Gemini API Integration</h4>
+              <label for="setting-gemini-key">Gemini API Integration</label>
               <p>Provide your client-side Gemini Developer API Key to upgrade the offline coach to real-time generative conversation</p>
             </div>
             <div class="settings-control" style="display: flex; gap: 0.5rem; align-items: center;">
-              <input type="password" id="setting-gemini-key" placeholder="Enter API Key" style="width: 220px;" onchange="app.saveSettings()">
-              <button class="btn btn-secondary" style="padding: 0.65rem 0.85rem;" id="btn-toggle-key-visibility" onclick="app.toggleKeyVisibility()">
-                <i class="fa-solid fa-eye" id="icon-key-visibility"></i>
+              <input type="password" id="setting-gemini-key" placeholder="Enter API Key" style="width: 220px;">
+              <button class="btn btn-secondary" style="padding: 0.65rem 0.85rem;" id="btn-toggle-key-visibility" aria-label="Toggle Gemini API Key Visibility">
+                <i class="fa-solid fa-eye" id="icon-key-visibility" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -643,12 +643,12 @@
           <!-- Reset stats -->
           <div class="settings-row">
             <div class="settings-desc">
-              <h4>Data Actions</h4>
+              <span style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; display: block;">Data Actions</span>
               <p>Permanently remove or reset data saved in this browser</p>
             </div>
             <div class="settings-control">
-              <button class="btn btn-secondary" style="color: var(--color-danger); border-color: rgba(239, 68, 68, 0.2);" onclick="app.resetAllData()">
-                <i class="fa-solid fa-trash-can"></i> Wipe Local Storage
+              <button class="btn btn-secondary" style="color: var(--color-danger); border-color: rgba(239, 68, 68, 0.2);" id="btn-wipe-data">
+                <i class="fa-solid fa-trash-can" aria-hidden="true"></i> Wipe Local Storage
               </button>
             </div>
           </div>

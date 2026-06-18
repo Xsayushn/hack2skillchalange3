@@ -1,3 +1,5 @@
+"use strict";
+
 // Eco AI Coach Gaia Module
 
 const assistant = {
@@ -11,6 +13,26 @@ const assistant = {
         text: "Hello! I am Gaia, your personal Eco AI Coach. I am here to help you understand your carbon footprint, simulate potential changes, and recommend actions to live more sustainably.\n\nHow can I help you today?"
       }
     ];
+    
+    // Programmatic event listeners
+    const btnSend = document.getElementById('btn-chat-send');
+    if (btnSend) {
+      btnSend.addEventListener('click', () => this.sendMessage());
+    }
+
+    const chatInput = document.getElementById('chat-user-input');
+    if (chatInput) {
+      chatInput.addEventListener('keypress', (e) => this.handleKeyPress(e));
+    }
+
+    const quickQueries = document.querySelectorAll('.btn-quick-query');
+    quickQueries.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const query = btn.getAttribute('data-query');
+        if (query) this.sendQuickQuery(query);
+      });
+    });
+
     this.renderChatHistory();
   },
 
@@ -53,9 +75,21 @@ const assistant = {
     container.scrollTop = container.scrollHeight;
   },
 
-  formatMarkdown(text) {
-    // Basic formatting helper for bolding and list points in chat
+  escapeHtml(text) {
     return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  },
+
+  formatMarkdown(text) {
+    // Escape first to prevent XSS
+    const escaped = this.escapeHtml(text);
+    // Basic formatting helper for bolding and list points in chat
+    return escaped
+      .replace(/&lt;br&gt;/g, '<br>') // Allow linebreaks we inject programmatically
       .replace(/\n/g, '<br>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -92,7 +126,7 @@ const assistant = {
     const container = document.getElementById('chat-messages-container');
     const typingBubble = document.createElement('div');
     typingBubble.className = 'chat-msg assistant';
-    typingBubble.innerHTML = '<i class="fa-solid fa-ellipsis fa-bounce"></i> Gaia is thinking...';
+    typingBubble.innerHTML = '<i class="fa-solid fa-ellipsis fa-bounce" aria-hidden="true"></i> Gaia is thinking...';
     container.appendChild(typingBubble);
     container.scrollTop = container.scrollHeight;
 
@@ -111,8 +145,11 @@ const assistant = {
   },
 
   sendQuickQuery(text) {
-    document.getElementById('chat-user-input').value = text;
-    this.sendMessage();
+    const chatInput = document.getElementById('chat-user-input');
+    if (chatInput) {
+      chatInput.value = text;
+      this.sendMessage();
+    }
   },
 
   // offline rule-based heuristics engine
@@ -175,7 +212,7 @@ Household electricity and heating contribute heavily to global emissions based o
     }
 
     // 4. Transport Footprint Focus
-    if (text.includes('transport') || text.includes('car') || text.includes('flight') || text.includes('commute') || text.includes('petrol') || text.includes('diesel')) {
+    if (text.includes('transport') || text.includes('car') || text.includes('flight') || text.includes('commute') || text.includes('petrol') || text.includes('diesel') || text.includes('transit') || text.includes('travel') || text.includes('mileage') || text.includes('driving')) {
       const transPart = hasData ? Math.round(breakdown.transport) : 2000;
       return `### Transportation Carbon Optimization
 Transport makes up nearly a quarter of global energy-related greenhouse gases. Your current transportation footprint is **${transPart.toLocaleString()} kg CO₂e/yr**.
@@ -187,7 +224,7 @@ Transport makes up nearly a quarter of global energy-related greenhouse gases. Y
     }
 
     // 5. Diet Footprint Focus
-    if (text.includes('diet') || text.includes('food') || text.includes('meat') || text.includes('vegan') || text.includes('vegetarian') || text.includes('beef') || text.includes('waste')) {
+    if (text.includes('diet') || text.includes('food') || text.includes('meat') || text.includes('vegan') || text.includes('vegetarian') || text.includes('beef') || text.includes('waste') || text.includes('transition') || text.includes('meal') || text.includes('compost') || text.includes('eating')) {
       const dietPart = hasData ? Math.round(breakdown.diet) : 1800;
       return `### Dietary & Food Carbon Optimization
 Food production accounts for over 25% of global greenhouse gases. Your current diet footprint is **${dietPart.toLocaleString()} kg CO₂e/yr**.

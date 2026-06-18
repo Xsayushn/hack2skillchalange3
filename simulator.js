@@ -1,3 +1,5 @@
+"use strict";
+
 // Eco Simulator Module
 
 const simulator = {
@@ -19,6 +21,11 @@ const simulator = {
         el.addEventListener('input', () => this.updateProjection());
       }
     });
+
+    const btnConvert = document.getElementById('btn-convert-sim-to-habits');
+    if (btnConvert) {
+      btnConvert.addEventListener('click', () => this.applySimulatedActions());
+    }
   },
 
   loadProfile(userProfile, carbonData) {

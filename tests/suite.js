@@ -1,3 +1,5 @@
+"use strict";
+
 // Client test cases suite
 
 const testSuite = [
@@ -174,6 +176,184 @@ const testSuite = [
         return { pass: false, error: `Expected response to note offline constraints and mention Gaia. Got:\n${response}` };
       }
       return { pass: true };
+    }
+  },
+  {
+    name: "Simulator - Carbon Impact Projection Calculations",
+    run() {
+      // Sandbox setup
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <input id="sim-transport-reduction" value="50">
+        <input id="sim-renewable-shift" value="50">
+        <input id="sim-meat-reduction" value="0">
+        <input id="sim-waste-reduction" value="0">
+        <span id="val-sim-transport"></span>
+        <span id="val-sim-energy"></span>
+        <span id="val-sim-diet"></span>
+        <span id="val-sim-waste"></span>
+        <span id="val-sim-reduction-pct"></span>
+        <span id="val-sim-current-ton"></span>
+        <span id="val-sim-projected-ton"></span>
+        <span id="val-sim-saved-kg"></span>
+      `;
+      document.body.appendChild(div);
+
+      try {
+        window.app.userProfile = {
+          region: 'EU',
+          inputs: {
+            electricity: 200,
+            renewableShare: 0,
+          }
+        };
+        window.app.carbonData = {
+          annualTotal: 4000,
+          breakdown: { energy: 1000, transport: 1000, diet: 1000, consumption: 1000 }
+        };
+        
+        simulator.loadProfile(window.app.userProfile, window.app.carbonData);
+        
+        // Set slider values after loading profile (since loadProfile resets them)
+        document.getElementById('sim-transport-reduction').value = 50;
+        document.getElementById('sim-renewable-shift').value = 50;
+        
+        simulator.updateProjection();
+        
+        const pctText = document.getElementById('val-sim-reduction-pct').innerText;
+        const savedText = document.getElementById('val-sim-saved-kg').innerText;
+        
+        if (pctText !== "20%") {
+          return { pass: false, error: `Expected reduction percentage to be 20%, got ${pctText}` };
+        }
+        if (!savedText.includes("800")) {
+          return { pass: false, error: `Expected annual savings to include 800 kg, got ${savedText}` };
+        }
+        return { pass: true };
+      } finally {
+        div.remove();
+      }
+    }
+  },
+  {
+    name: "Habits - Logging daily streak and XP increments",
+    run() {
+      const userProfile = {
+        xp: 100,
+        habits: [
+          { id: 'habit-meatless', active: true, streak: 0, lastLogged: null }
+        ]
+      };
+      
+      const originalProfile = window.app.userProfile;
+      window.app.userProfile = userProfile;
+      let saved = false;
+      window.app.saveProfile = () => { saved = true; };
+      
+      try {
+        habits.logDaily('habit-meatless');
+        
+        const habitState = userProfile.habits[0];
+        if (habitState.streak !== 1) {
+          return { pass: false, error: `Expected streak to be 1, got ${habitState.streak}` };
+        }
+        if (userProfile.xp !== 115) { // 100 + 15 XP reward
+          return { pass: false, error: `Expected XP to be 115, got ${userProfile.xp}` };
+        }
+        if (!saved) {
+          return { pass: false, error: "Expected profile to be saved" };
+        }
+        return { pass: true };
+      } finally {
+        window.app.userProfile = originalProfile;
+        window.app.saveProfile = () => {};
+      }
+    }
+  },
+  {
+    name: "Habits - Double logging prevention check",
+    run() {
+      const today = new Date().toDateString();
+      const userProfile = {
+        xp: 100,
+        habits: [
+          { id: 'habit-meatless', active: true, streak: 1, lastLogged: today }
+        ]
+      };
+      
+      const originalProfile = window.app.userProfile;
+      window.app.userProfile = userProfile;
+      
+      try {
+        habits.logDaily('habit-meatless');
+        
+        const habitState = userProfile.habits[0];
+        if (habitState.streak !== 1) {
+          return { pass: false, error: `Expected streak to remain 1, got ${habitState.streak}` };
+        }
+        if (userProfile.xp !== 100) {
+          return { pass: false, error: `Expected XP to remain 100, got ${userProfile.xp}` };
+        }
+        return { pass: true };
+      } finally {
+        window.app.userProfile = originalProfile;
+      }
+    }
+  },
+  {
+    name: "Dashboard - Eco standing score calculation math",
+    run() {
+      const carbonData = {
+        annualTotal: 5000,
+        breakdown: { energy: 1000, transport: 1500, diet: 1500, consumption: 1000 },
+        monthlyTotal: 417
+      };
+      const userProfile = {
+        region: 'EU',
+        xp: 150,
+        habits: [
+          { id: 'habit-meatless', active: true },
+          { id: 'habit-commute', active: true },
+          { id: 'habit-led', active: false }
+        ]
+      };
+      
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <span id="val-annual-footprint"></span>
+        <span id="val-monthly-footprint"></span>
+        <span id="val-target-diff"></span>
+        <div id="change-target-standing"></div>
+        <span id="unit-target-comparison"></span>
+        <div id="change-annual-footprint"></div>
+        <div id="change-monthly-footprint"></div>
+        <span id="val-eco-score"></span>
+        <span id="val-eco-rating"></span>
+        <div id="change-eco-rank"></div>
+        <span id="sidebar-user-avatar"></span>
+        <span id="sidebar-user-level"></span>
+        <span id="badge-current-level"></span>
+        <span id="xp-text-current"></span>
+        <span id="xp-text-next"></span>
+        <div id="level-progress-indicator"></div>
+        <div id="level-badge-title"></div>
+        <div id="dashboard-achievements-container"></div>
+        <canvas id="chart-breakdown"></canvas>
+      `;
+      document.body.appendChild(div);
+      
+      try {
+        dashboard.update(carbonData, userProfile);
+        
+        const scoreText = document.getElementById('val-eco-score').innerText;
+        // base = 100 - (5000 / 250) = 80. bonus = 2 active habits * 3.5 = 7. final = 87
+        if (scoreText !== "87") {
+          return { pass: false, error: `Expected eco standing score to be 87, got ${scoreText}` };
+        }
+        return { pass: true };
+      } finally {
+        div.remove();
+      }
     }
   }
 ];

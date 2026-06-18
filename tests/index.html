@@ -144,8 +144,14 @@
     </div>
   </div>
 
+  <!-- Import Chart.js (needed for dashboard.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <!-- Import core scripts to test -->
   <script src="../calculator.js"></script>
+  <script src="../dashboard.js"></script>
+  <script src="../simulator.js"></script>
+  <script src="../habits.js"></script>
   <script src="../assistant.js"></script>
   
   <!-- Custom mock profile object for application mocking -->
@@ -163,12 +169,15 @@
       carbonData: null,
       saveProfile() {},
       updateDashboard() {},
+      checkAchievementAwards() {},
+      activateHabit() {},
+      navigateTo() {},
       grantXP(amt) { this.userProfile.xp += amt; },
       showToast(msg, type) { console.log("Toast:", type, msg); }
     };
   </script>
 
   <!-- Load and run tests -->
-  <script src="suite.js"></script>
+  <script src="suite.js?v=3"></script>
 </body>
 </html>

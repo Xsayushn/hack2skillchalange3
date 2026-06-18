@@ -1,3 +1,5 @@
+"use strict";
+
 // Eco Habits Module
 
 const habits = {
@@ -67,6 +69,34 @@ const habits = {
     }
   ],
 
+  init() {
+    const container = document.getElementById('habits-cards-container');
+    if (container) {
+      container.addEventListener('click', (e) => {
+        const logBtn = e.target.closest('.btn-habit-log');
+        if (logBtn) {
+          const id = logBtn.getAttribute('data-id');
+          this.logDaily(id);
+          return;
+        }
+
+        const removeBtn = e.target.closest('.btn-habit-remove');
+        if (removeBtn) {
+          const id = removeBtn.getAttribute('data-id');
+          this.toggleHabitActive(id, false);
+          return;
+        }
+
+        const addBtn = e.target.closest('.btn-habit-add');
+        if (addBtn) {
+          const id = addBtn.getAttribute('data-id');
+          this.toggleHabitActive(id, true);
+          return;
+        }
+      });
+    }
+  },
+
   renderList(userProfile) {
     const container = document.getElementById('habits-cards-container');
     if (!container) return;
@@ -87,7 +117,7 @@ const habits = {
               <span class="habit-cat-tag tag-${h.category}">${h.category}</span>
             </div>
             <div style="font-size: 1.25rem; color: var(--text-muted);">
-              <i class="fa-solid ${h.icon}"></i>
+              <i class="fa-solid ${h.icon}" aria-hidden="true"></i>
             </div>
           </div>
           
@@ -97,11 +127,11 @@ const habits = {
           
           <div>
             <div class="habit-impact-badge">
-              <i class="fa-solid fa-leaf"></i> ${h.impact}
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i> ${h.impact}
             </div>
             ${activeState.active ? `
               <div class="habit-streak" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                <i class="fa-solid fa-fire" style="color: var(--color-warning);"></i>
+                <i class="fa-solid fa-fire" style="color: var(--color-warning);" aria-hidden="true"></i>
                 <span>Active Streak: <strong>${activeState.streak} days</strong></span>
               </div>
             ` : ''}
@@ -113,16 +143,16 @@ const habits = {
             </span>
             ${activeState.active ? `
               <div style="display: flex; gap: 0.5rem;">
-                <button class="btn btn-primary btn-sm habit-action-btn active" onclick="habits.logDaily('${h.id}')" id="btn-log-${h.id}">
-                  <i class="fa-solid fa-check"></i> Log Today
+                <button class="btn btn-primary btn-sm habit-action-btn active btn-habit-log" data-id="${h.id}" id="btn-log-${h.id}">
+                  <i class="fa-solid fa-check" aria-hidden="true"></i> Log Today
                 </button>
-                <button class="btn btn-secondary btn-sm" style="padding: 0.5rem;" title="Remove Action" onclick="habits.toggleHabitActive('${h.id}', false)">
-                  <i class="fa-solid fa-xmark"></i>
+                <button class="btn btn-secondary btn-sm btn-habit-remove" data-id="${h.id}" style="padding: 0.5rem;" title="Remove Action" aria-label="Remove habit ${h.title} from plan">
+                  <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
               </div>
             ` : `
-              <button class="btn btn-secondary btn-sm habit-action-btn" onclick="habits.toggleHabitActive('${h.id}', true)">
-                <i class="fa-solid fa-plus"></i> Add to Plan
+              <button class="btn btn-secondary btn-sm habit-action-btn btn-habit-add" data-id="${h.id}">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add to Plan
               </button>
             `}
           </div>

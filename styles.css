@@ -28,8 +28,8 @@
   
   /* Text colors */
   --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
   
   /* Layout constraints */
   --sidebar-width: 260px;
@@ -1140,15 +1140,33 @@ input[type="range"]::-webkit-slider-thumb:hover {
   padding-bottom: 0;
 }
 
-.settings-desc h4 {
+.settings-desc h4,
+.settings-desc label {
   font-size: 1.05rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
+  display: block;
 }
 
 .settings-desc p {
   font-size: 0.85rem;
   color: var(--text-secondary);
+}
+
+/* Fieldset and Legend Reset for Accessibility */
+.radio-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.radio-legend {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding: 0;
 }
 
 .settings-control {
