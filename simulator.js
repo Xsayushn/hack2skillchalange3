@@ -72,10 +72,10 @@ const simulator = {
     const wastePct = parseFloat(document.getElementById('sim-waste-reduction').value);
 
     // Update slider UI value labels
-    document.getElementById('val-sim-transport').innerText = `${transportPct}% Less`;
-    document.getElementById('val-sim-energy').innerText = energyVal > 0 ? `${energyVal}% Green` : 'No Change';
-    document.getElementById('val-sim-diet').innerText = dietPct > 0 ? `${dietPct}% Less Meat` : 'No Change';
-    document.getElementById('val-sim-waste').innerText = `${wastePct}% Less Waste`;
+    document.getElementById('val-sim-transport').textContent = `${transportPct}% Less`;
+    document.getElementById('val-sim-energy').textContent = energyVal > 0 ? `${energyVal}% Green` : 'No Change';
+    document.getElementById('val-sim-diet').textContent = dietPct > 0 ? `${dietPct}% Less Meat` : 'No Change';
+    document.getElementById('val-sim-waste').textContent = `${wastePct}% Less Waste`;
 
     // 1. Calculate Transport Savings
     // Simulating cutting back car/transit distances
@@ -112,10 +112,10 @@ const simulator = {
     const reductionPct = this.annualTotal > 0 ? Math.round((totalSavings / this.annualTotal) * 100) : 0;
 
     // Render outputs
-    document.getElementById('val-sim-reduction-pct').innerText = `${reductionPct}%`;
-    document.getElementById('val-sim-current-ton').innerText = `${(this.annualTotal / 1000).toFixed(2)} t/year`;
-    document.getElementById('val-sim-projected-ton').innerText = `${(projectedAnnual / 1000).toFixed(2)} t/year`;
-    document.getElementById('val-sim-saved-kg').innerText = `${Math.round(totalSavings).toLocaleString()} kg CO₂e`;
+    document.getElementById('val-sim-reduction-pct').textContent = `${reductionPct}%`;
+    document.getElementById('val-sim-current-ton').textContent = `${(this.annualTotal / 1000).toFixed(2)} t/year`;
+    document.getElementById('val-sim-projected-ton').textContent = `${(projectedAnnual / 1000).toFixed(2)} t/year`;
+    document.getElementById('val-sim-saved-kg').textContent = `${Math.round(totalSavings).toLocaleString()} kg CO₂e`;
   },
 
   applySimulatedActions() {

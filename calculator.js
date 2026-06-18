@@ -59,7 +59,7 @@ const calculator = {
     const renewRange = document.getElementById('input-renewable');
     if (renewRange) {
       renewRange.addEventListener('input', (e) => {
-        document.getElementById('label-val-renewable').innerText = `${e.target.value}%`;
+        document.getElementById('label-val-renewable').textContent = `${e.target.value}%`;
       });
     }
 

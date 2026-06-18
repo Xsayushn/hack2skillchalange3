@@ -23,26 +23,26 @@ const dashboard = {
     const monthlyKg = carbonData.monthlyTotal;
     
     // 1. Core values
-    document.getElementById('val-annual-footprint').innerText = annualTons;
-    document.getElementById('val-monthly-footprint').innerText = monthlyKg;
+    document.getElementById('val-annual-footprint').textContent = annualTons;
+    document.getElementById('val-monthly-footprint').textContent = monthlyKg;
 
     // 2. Target Diff
     const region = userProfile.region || 'EU';
     const limit = this.REGION_LIMITS[region] || 8000;
     const limitPct = Math.round((carbonData.annualTotal / limit) * 100);
-    document.getElementById('val-target-diff').innerText = `${limitPct}%`;
+    document.getElementById('val-target-diff').textContent = `${limitPct}%`;
     
     const targetStanding = document.getElementById('change-target-standing');
     const targetIndicator = document.getElementById('unit-target-comparison');
     if (limitPct <= 50) {
       targetStanding.innerHTML = `<i class="fa-solid fa-leaf" style="color: var(--color-primary);"></i> <span style="color: var(--color-primary);">Carbon Neutral Champion</span>`;
-      targetIndicator.innerText = `of ${region} budget (Excellent)`;
+      targetIndicator.textContent = `of ${region} budget (Excellent)`;
     } else if (limitPct <= 100) {
       targetStanding.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--color-secondary);"></i> <span style="color: var(--color-secondary);">Under Regional Budget</span>`;
-      targetIndicator.innerText = `of ${region} budget (Good)`;
+      targetIndicator.textContent = `of ${region} budget (Good)`;
     } else {
       targetStanding.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: var(--color-danger);"></i> <span style="color: var(--color-danger);">Over Regional Budget</span>`;
-      targetIndicator.innerText = `of ${region} budget (Needs Action)`;
+      targetIndicator.textContent = `of ${region} budget (Needs Action)`;
     }
 
     // 3. Historical comparison
@@ -81,20 +81,20 @@ const dashboard = {
     const bonusPoints = activeHabits * 3.5;
     const finalScore = Math.max(5, Math.min(100, Math.round(baseScore + bonusPoints)));
     
-    document.getElementById('val-eco-score').innerText = finalScore;
+    document.getElementById('val-eco-score').textContent = finalScore;
     const ratingElement = document.getElementById('val-eco-rating');
     const changeEcoRank = document.getElementById('change-eco-rank');
     if (finalScore >= 85) {
-      ratingElement.innerText = "Eco Hero";
+      ratingElement.textContent = "Eco Hero";
       changeEcoRank.style.color = "var(--color-primary)";
     } else if (finalScore >= 70) {
-      ratingElement.innerText = "Green Guardian";
+      ratingElement.textContent = "Green Guardian";
       changeEcoRank.style.color = "var(--color-secondary)";
     } else if (finalScore >= 50) {
-      ratingElement.innerText = "Climate Advocate";
+      ratingElement.textContent = "Climate Advocate";
       changeEcoRank.style.color = "var(--color-warning)";
     } else {
-      ratingElement.innerText = "Carbon Heavyweight";
+      ratingElement.textContent = "Carbon Heavyweight";
       changeEcoRank.style.color = "var(--color-danger)";
     }
 
@@ -104,25 +104,25 @@ const dashboard = {
     const xpCurrent = xp % 100;
     const xpNeeded = 100 - xpCurrent;
 
-    document.getElementById('sidebar-user-avatar').innerText = `L${level}`;
-    document.getElementById('sidebar-user-level').innerText = `Level ${level} (${xpCurrent} / 100 XP)`;
-    document.getElementById('badge-current-level').innerText = level;
-    document.getElementById('xp-text-current').innerText = `${xpCurrent} XP earned in level`;
-    document.getElementById('xp-text-next').innerText = `${xpNeeded} XP to level up`;
+    document.getElementById('sidebar-user-avatar').textContent = `L${level}`;
+    document.getElementById('sidebar-user-level').textContent = `Level ${level} (${xpCurrent} / 100 XP)`;
+    document.getElementById('badge-current-level').textContent = level;
+    document.getElementById('xp-text-current').textContent = `${xpCurrent} XP earned in level`;
+    document.getElementById('xp-text-next').textContent = `${xpNeeded} XP to level up`;
     document.getElementById('level-progress-indicator').style.width = `${xpCurrent}%`;
     
     // Level Badge Title update
     const levelTitle = document.getElementById('level-badge-title');
     if (level >= 5) {
-      levelTitle.innerText = "Sovereign Green Earthmaster";
+      levelTitle.textContent = "Sovereign Green Earthmaster";
     } else if (level === 4) {
-      levelTitle.innerText = "Ecosystem Champion";
+      levelTitle.textContent = "Ecosystem Champion";
     } else if (level === 3) {
-      levelTitle.innerText = "Eco Specialist";
+      levelTitle.textContent = "Eco Specialist";
     } else if (level === 2) {
-      levelTitle.innerText = "Nature Protector";
+      levelTitle.textContent = "Nature Protector";
     } else {
-      levelTitle.innerText = "Eco Explorer";
+      levelTitle.textContent = "Eco Explorer";
     }
 
     // 6. Renders chart
@@ -133,11 +133,11 @@ const dashboard = {
   },
 
   renderEmptyState() {
-    document.getElementById('val-annual-footprint').innerText = "--";
-    document.getElementById('val-monthly-footprint').innerText = "--";
-    document.getElementById('val-target-diff').innerText = "--%";
-    document.getElementById('val-eco-score').innerText = "--";
-    document.getElementById('val-eco-rating').innerText = "Enter Data";
+    document.getElementById('val-annual-footprint').textContent = "--";
+    document.getElementById('val-monthly-footprint').textContent = "--";
+    document.getElementById('val-target-diff').textContent = "--%";
+    document.getElementById('val-eco-score').textContent = "--";
+    document.getElementById('val-eco-rating').textContent = "Enter Data";
     document.getElementById('level-progress-indicator').style.width = `0%`;
     document.getElementById('dashboard-achievements-container').innerHTML = `
       <div style="text-align: center; color: var(--text-muted); padding: 2rem;">

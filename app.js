@@ -74,8 +74,6 @@ const app = {
     // Load initial page matching hash
     const initialHash = window.location.hash.replace('#', '') || 'dashboard';
     this.navigateTo(initialHash);
-    
-    console.log("EcoFootprint Application initialized.");
   },
 
   // State Management (LocalStorage)
@@ -223,11 +221,11 @@ const app = {
     dashboard.update(this.carbonData, this.userProfile);
     
     // Keep sidebar stats up to date
-    document.getElementById('sidebar-user-name').innerText = this.userProfile.name;
+    document.getElementById('sidebar-user-name').textContent = this.userProfile.name;
     const level = Math.floor(this.userProfile.xp / 100) + 1;
     const xpCurrent = this.userProfile.xp % 100;
-    document.getElementById('sidebar-user-avatar').innerText = `L${level}`;
-    document.getElementById('sidebar-user-level').innerText = `Level ${level} (${xpCurrent} / 100 XP)`;
+    document.getElementById('sidebar-user-avatar').textContent = `L${level}`;
+    document.getElementById('sidebar-user-level').textContent = `Level ${level} (${xpCurrent} / 100 XP)`;
   },
 
   // Settings Panel Logic
@@ -270,10 +268,10 @@ const app = {
     const labelStatus = document.getElementById('label-chat-status');
     if (labelStatus) {
       if (key.length > 10) {
-        labelStatus.innerText = "Ready (Online Coach)";
+        labelStatus.textContent = "Ready (Online Coach)";
         labelStatus.style.color = "var(--color-primary)";
       } else {
-        labelStatus.innerText = "Ready (Offline Coach)";
+        labelStatus.textContent = "Ready (Offline Coach)";
         labelStatus.style.color = "";
       }
     }

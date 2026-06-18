@@ -220,8 +220,8 @@ const testSuite = [
         
         simulator.updateProjection();
         
-        const pctText = document.getElementById('val-sim-reduction-pct').innerText;
-        const savedText = document.getElementById('val-sim-saved-kg').innerText;
+        const pctText = document.getElementById('val-sim-reduction-pct').textContent;
+        const savedText = document.getElementById('val-sim-saved-kg').textContent;
         
         if (pctText !== "20%") {
           return { pass: false, error: `Expected reduction percentage to be 20%, got ${pctText}` };
@@ -345,7 +345,7 @@ const testSuite = [
       try {
         dashboard.update(carbonData, userProfile);
         
-        const scoreText = document.getElementById('val-eco-score').innerText;
+        const scoreText = document.getElementById('val-eco-score').textContent;
         // base = 100 - (5000 / 250) = 80. bonus = 2 active habits * 3.5 = 7. final = 87
         if (scoreText !== "87") {
           return { pass: false, error: `Expected eco standing score to be 87, got ${scoreText}` };
@@ -396,12 +396,12 @@ function runTests() {
   
   // Render counters
   const total = testSuite.length;
-  document.getElementById('stat-total').innerText = total;
-  document.getElementById('stat-passed').innerText = passed;
-  document.getElementById('stat-failed').innerText = failed;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-passed').textContent = passed;
+  document.getElementById('stat-failed').textContent = failed;
   
   const pct = total > 0 ? Math.round((passed / total) * 100) : 0;
-  document.getElementById('stat-pct').innerText = `${pct}%`;
+  document.getElementById('stat-pct').textContent = `${pct}%`;
 }
 
 // Auto-run on load
